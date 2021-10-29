@@ -573,7 +573,7 @@ def logout():
 def comienzo(): #No deja entrar a otra ruta diferente a la del login
     if "email" not in session and request.endpoint in["comentario","registro","consulta_medico","patients","dashboard","admin","Roles","medic","asignarH","consultam","grabarh","menucitas","crearCita","editar_cita","update","eliminar_cita","citai1","consultap","calificarp","cpaciente1","cpaciente2","registroLlegada"]:
         return redirect(url_for("home"))
-
+        
 if __name__ == '__main__':
     app.run(debug = True)
  
