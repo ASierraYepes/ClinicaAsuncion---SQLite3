@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Calificar Cita</title>
+    <link rel="shortcut icon" href="/static/img/logo_ico.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://bootswatch.com/5/materia/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/citaEstilo.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/cita2.css')}}">
+    <script type="text/JavaScript" src="{{url_for('static' , filename='js/funciones.js')}}"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md sticky-top bg-light" id="navegacion" style="border-radius: 0px;">
+        <div class="container-fluid">
+            <img data-bss-hover-animate="pulse" id="logo" src="{{url_for('static', filename='img/LOGO.png')}}" href="#">
+            <div id="Titulo1">
+                <a class="navbar-brand" href="javascript: history.go(-1)">
+                    <strong>
+                Clínica la Asunción
+                </strong>&nbsp;
+                </a>
+            </div>
+        </div>
+    </nav>
+    <section class="">
+        {%for message in get_flashed_messages()%}
+        <div class="container1 card card-body" style="background-color:#6930c3; text-align: center; color: #fff;">
+            {{message}}
+        </div>
+        {%endfor%}
+    </section>
+    <h2>Paciente</h2>
+    <br>
+    <form action="/consulta_paciente" id="cpaciente" method="POST">
+        {{form.hidden_tag()}}
+        <div class="container1 card card-body">
+            <table class="table1">
+                <tr>
+                    <td>{{form.id_paciente.label()}}</td>
+                    <td>{{form.id_paciente(class="form-control ")}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>{{form.buscarp(class="btn btn-secondary ", style="background-color: #3699ff; color: white; width: 100%;")}}</td>
+                </tr>
+            </table>
+        </div>
+    </form>
+    <h2>Información de Paciente</h2>
+    <div class="container2 card card-body">
+        <table class="table2">
+            <tr>
+                <td><label class="LabelNombreM"><b>Nombre del Paciente : </b></label></td>
+                <td>
+                    {% if row %} {{row ["nombre"]}} {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td><label class="LabelEspecilidadM"><b>Estado de salud del Paciente : </b></label></td>
+                <td>
+                    {% if row %} {{row ["estado_salud"]}} {% endif %}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <h2>Calificación de Cita</h2>
+    <form action="/calificacionp" id="calificarp" method="POST">
+        {{form.hidden_tag()}}
+        <div class="container3 card card-body">
+            <table class="table3">
+                <tr>
+                    <td>{{form.id_cita.label}}</td>
+                    <td>{{form.id_cita(class="form-control ")}}</td>
+                </tr>
+                <td>
+                    <p>Calificar Cita</p>
+                </td>
+                <td>{{form.calificacion(class="form-control h-auto form-control-solid py-4 px-8")}}</td>
+                <tr>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>{{form.actualizar(class="btn btn-secondary", style="background-color: #3699ff; color: white; width: 100%;")}}</td>
+                </tr>
+            </table>
+        </div>
+    </form>
+    <div>
+        <button class="btn btn-secondary">
+            <a href="javascript: history.go(-1)">volver</a>
+        </button>
+    </div>
+    <footer class="bg-white sticky-footer" id="footer">
+        <div class="container my-auto">
+            <div class="text-center my-auto copyright"><span>Copyright © Clínica la Asunción 2022</span></div>
+        </div>
+    </footer>
+</body>
+
+</html>

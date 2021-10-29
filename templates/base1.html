@@ -1,0 +1,41 @@
+{% extends "base.html"%}
+
+<body>
+    {%block contenido%}
+    <h1>Informacion del Medico</h1>
+    <div class="container2">
+        <table class="table2">
+            <tr>
+                <td><label class="LabelNombreM">Nombre del Médico</label></td>
+                <td>
+                    {% if row %} {{row ["nombre"]}} {% endif %}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <h1>Grabar Horario</h1>
+    <form action="/agregar_horario" id="horariom" method="POST">
+        {{form.hidden_tag()}}
+        <div class="container3">
+            <table class="table3">
+                <tr>
+                    <td>{{form.fecha.label}}</td>
+                    <td>{{form.fecha(size=10)}}</td>
+                </tr>
+                <tr>
+                    <td>{{form.hora_inicial.label}}</td>
+                    <td>{{form.hora_inicial(size=10)}}</td>
+                </tr>
+                <tr>
+                    <td>{{form.hora_final.label}}</td>
+                    <td>{{form.hora_final(size=10)}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>{{form.actualizar()}}</td>
+                </tr>
+            </table>
+        </div>
+    </form>
+    {%endblock%} {%block contenido1%} {%endblock%}
+</body>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Historia Clinica</title>
+    <link rel="shortcut icon" href="/static/img/logo_ico.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://bootswatch.com/5/materia/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/citaEstilo.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/cita2.css')}}">
+    <script type="text/JavaScript" src="{{url_for('static' , filename='js/funciones.js')}}"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md sticky-top bg-light" id="navegacion" style="border-radius: 0px;">
+        <div class="container-fluid">
+            <img data-bss-hover-animate="pulse" id="logo" src="{{url_for('static', filename='img/LOGO.png')}}" href="#">
+            <div id="Titulo1">
+                <a class="navbar-brand" href="javascript: history.go(-1)">
+                    <strong>
+                Clínica la Asunción
+                </strong>&nbsp;
+                </a>
+            </div>
+        </div>
+    </nav>
+    <section class="">
+        {%for message in get_flashed_messages()%}
+        <div class="container1 card card-body" style="background-color:#6930c3; text-align: center; color: #fff;">
+            {{message}}
+        </div>
+        {%endfor%}
+    </section>
+    <h2>Paciente</h2>
+    <br>
+    <form action="/historiap" id="historia" method="POST">
+        {{form.hidden_tag()}}
+        <div class="container1 card card-body">
+            <table class="table1">
+                <tr>
+                    <td>{{form.id_paciente.label}}</td>
+                    <td>{{form.id_paciente(class="form-control ")}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>{{form.buscarp1(class="btn btn-secondary ", style="background-color: #3699ff; color: white; width: 100%;")}}</td>
+                </tr>
+            </table>
+        </div>
+    </form>
+    <h2>Informacion de Paciente</h2>
+    <div class="container2 card card-body">
+        <table class="table2">
+            <tr>
+                <td><label class="LabelNombreM">Nombre del Paciente</label></td>
+                <td>
+                    {% if row %} {{row ["nombre"]}} {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td><label class="LabelApellidoM">Estado de Salud del Paciente</label></td>
+                <td>
+                    {% if row %} {{row ["estado_salud"]}} {% endif %}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <h2>Historia Clinica</h2>
+    <div class="container3 card card-body">
+        <table class="table3">
+            <tr>
+                <td><label class="LabelNombreM">No. Historia</label></td>
+                <td>
+                    {% if row1 %} {{row1 ["id_historia"]}} {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td><label class="LabelApellidoM">Estado del Paciente</label></td>
+                <td>
+                    {% if row1 %} {{row1 ["estado"]}} {% endif %}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <h2>Comentarios de Historia Clinica</h2>
+    <div class="container4 card card-body">
+        <table class="table4">
+            <thead class="tableheader">
+                <tr>
+                    <td><label class="LabelNombreM"> Id Cita </label></td>
+                    <td><label class="LabelApellidoM"> id Medico </label></td>
+                    <td><label class="LabelEspecilidadM"> Comentario </label></td>
+                </tr>
+            </thead>
+            {% if row2 %} {% for i in row2 %}
+            <tr style="text-align: center">
+                <td>
+                    {{i ["id_cita"]}}
+                </td>
+                <td>
+                    {{i ["id_medico"]}}
+                </td>
+                <td>
+                    {{i ["comentario"]}}
+                </td>
+            </tr>
+            {% endfor %} {% endif %}
+        </table>
+    </div>
+    <br>
+    <br>
+    <div>
+        <button class="btn btn-secondary">
+            <a href="javascript: history.go(-1)">volver</a>
+        </button>
+    </div>
+    <footer class="bg-white sticky-footer" id="footer">
+        <div class="container my-auto">
+            <div class="text-center my-auto copyright"><span>Copyright © Clínica la Asunción 2022</span></div>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Asignar horario por medico</title>
+    <link rel="shortcut icon" href="/static/img/logo_ico.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://bootswatch.com/5/materia/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/citaEstilo.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/cita2.css')}}">
+    <script type="text/JavaScript" src="{{url_for('static' , filename='js/funciones.js')}}"></script>
+    <link rel="shortcut icon" href="static/img/logo_ico.ico" />
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md sticky-top bg-light" id="navegacion" style="border-radius: 0px;">
+        <div class="container-fluid">
+            <img data-bss-hover-animate="pulse" id="logo" src="{{url_for('static', filename='img/LOGO.png')}}" href="#">
+            <div id="Titulo1">
+                <a class="navbar-brand" href="javascript: history.go(-1)">
+                    <strong>
+                Clínica la Asunción
+                </strong>&nbsp;
+                </a>
+            </div>
+        </div>
+    </nav>
+    <section class="">
+        {%for message in get_flashed_messages()%}
+        <div class="container1 card card-body" style="background-color:#6930c3; text-align: center; color: #fff;">
+            {{message}}
+        </div>
+        {%endfor%}
+    </section>
+    <h2>Asignar Horario a Medico</h2>
+    <br>
+    <form action="/consulta_medico" id="medicoh" method="POST">
+        {{form.hidden_tag()}}
+        <div class="container1 card card-body">
+            <table class="table1">
+                <tr>
+                    <td>{{form.id_medico.label}}</td>
+                    <td>{{form.id_medico(class="form-control ")}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>{{form.consultar(class="btn btn-secondary ", style="background-color: #3699ff; color: white; width:100%;")}}</td>
+                </tr>
+            </table>
+        </div>
+    </form>
+    <h2>Información del Medico</h2>
+    <div class="container2 card card-body">
+        <table class="table2">
+            <tr>
+                <td><label class="LabelNombreM">Nombre del Medico</label></td>
+                <td>
+                    {% if row %} {{row ["nombre"]}} {% endif %}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <h2>Grabar Horario</h2>
+    <form action="/agregar_horario" id="horariom" method="POST">
+        <div style="visibility:hidden">
+            {{form.hidden_tag()}}
+            {{form.id_medico.label}} {{form.id_medico(size=30)}}
+        </div>
+        <div class="container3 card card-body">
+            <table class="table3">
+                <tr>
+                    <td>{{form.fecha.label}}</td>
+                    <td>{{form.fecha(class="form-control ")}}</td>
+                </tr>
+                <tr>
+                    <td>{{form.hora_inicial.label}}</td>
+                    <td>{{form.hora_inicial(class="form-control ")}}</td>
+                </tr>
+                <tr>
+                    <td>{{form.hora_final.label}}</td>
+                    <td>{{form.hora_final(class="form-control ")}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>{{form.actualizar(class="btn btn-secondary ", style="background-color: #3699ff; color: white; width:100%;")}}</td>
+                </tr>
+            </table>
+        </div>
+    </form>
+    <h2>Horario del Medico</h2>
+    <div class="container2">
+        <table class="table table-bordered table-striped bg-white">
+            <thead class="tableheader">
+                <td><label class="LabelNombreM"> Fecha </label></td>
+                <td><label class="LabelApellidoM"> Hora Inicial </label></td>
+                <td><label class="LabelEspecilidadM"> Hora Final </label></td>
+                <td><label class="Labelmedico"> Id Medico </label></td>
+            </thead>
+            <tr>
+                {% if row1 %} {% for i in row1 %}
+                <td>
+                    {{i ["fecha"]}}
+                </td>
+                <td>
+                    {{i ["hora_inicial"]}}
+                </td>
+                <td>
+                    {{i ["hora_final"]}}
+                </td>
+                <td>
+                    {{i ["id_medico"]}}
+                </td>
+            </tr>
+            {% endfor %} {% endif %}
+        </table>
+    </div>
+    <div>
+        <button class="btn btn-secondary">
+            <a href="javascript: history.go(-1)">volver</a>
+        </button>
+    </div>
+    <footer class="bg-white sticky-footer" id="footer">
+        <div class="container my-auto">
+            <div class="text-center my-auto copyright"><span>Copyright © Clínica la Asunción 2022</span></div>
+        </div>
+    </footer>
+</body>
+
+</html>

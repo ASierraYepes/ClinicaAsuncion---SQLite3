@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>asignar_horario_medico1</title>
+    <link rel="shortcut icon" href="/static/img/logo_ico.ico" type="image/x-icon">
+    <script type="text/JavaScript" src="{{url_for('static' , filename='js/funciones.js')}}"></script>
+    <link rel="shortcut icon" href="static/img/logo_ico.ico" />
+</head>
+
+<body>
+    <section class="">
+        {%for message in get_flashed_messages()%}
+        <div>
+            {{message}}
+        </div>
+        {%endfor%}
+    </section>
+    <h1>Asignar Horario a Medico</h1>
+    <br>
+    <form action="/consulta_medico" id="medicoh" method="POST">
+        {{form.hidden_tag()}}
+        <div class="container1">
+            <table class="table1">
+                <tr>
+                    <td>{{form.id_medico.label}}</td>
+                    <td>{{form.id_medico(size=30)}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>{{form.consultar()}}</td>
+                </tr>
+            </table>
+        </div>
+    </form>
+    {%block contenido%} {%endblock%}
+</body>
+
+</html>

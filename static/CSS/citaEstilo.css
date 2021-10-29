@@ -1,0 +1,56 @@
+body {
+    background-image: url('../img/bg-9.jpg');
+}
+
+#logo {
+    width: 20%;
+}
+
+.container-fluid {
+    width: 25%;
+}
+
+#contcita {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+#tablacitas {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+#navegacion {
+    padding: 0px;
+    align-content: left;
+}
+
+.tableheader {
+    background-color: #3699ff;
+    text-align: center;
+}
+
+.tableheader>tr {
+    color: #fff;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+#obs {
+    text-align: center;
+}
+
+button {
+    width: 100%;
+}
+
+span {
+    font-weight: bold;
+}
+
+#footer {
+    padding: 36px;
+    margin-top: 20px;
+}

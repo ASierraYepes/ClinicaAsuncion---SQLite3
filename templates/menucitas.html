@@ -1,0 +1,82 @@
+{% extends 'baseCitas.html' %} {% block contenido %}
+<div class="row">
+    <div class="col-md-5" id="contcita">
+        {% with mensajes = get_flashed_messages() %} {% if mensajes %} {% for mensaje in mensajes %}
+        <div class="alert alert-success warning alert-dismissible fade show" role="alert">
+            {{mensaje}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %} {% endif %} {% endwith %}
+        <div class="card card-body">
+            <form action="/aCita" method="POST">
+                <div class="from-group">
+                    <input type="text" name="identificacion" placeholder="Identificacion" class="form-control">
+                </div>
+                <div class="from-group">
+                    <select name="medico" class="form-control h-auto form-control-solid py-4 px-8">
+                    <option  disabled selected>Seleccione médico</option>
+                    <option>Carlos Cepeda</option>
+                    <option>Beatriz Alvarez</option>	
+                    <option>Felipe Garcia</option>	
+                    <option>Sandra Peña</option>	
+                    <option>Santiago Abuchaibe</option>										
+                </select>
+                </div>
+                <div class="from-group">
+                    <input type="time" max="16:00:00" min="8:00:00" name="hora_cita" class="form-control">
+                </div>
+                <div class="from-group">
+                    <input type="date" name="fecha" class="form-control">
+                </div>
+                <div class="from-group">
+                    <select name="area" class="form-control h-auto form-control-solid py-4 px-8">
+                    <option  disabled selected>Seleccione Area</option>
+                    <option>Medicina General</option>
+                    <option>Odontologia</option>	
+                    <option>Cardiologia</option>	
+                    <option>Ginecologia</option>		
+                    <option>Urologia</option>	
+                    <option>Gastroenterologia</option>										
+                    </select>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary btn-block">Guardar</button>
+                <br>
+                <br>
+                <button type="button" class="btn btn-default " onclick="history.go(-1)">Cancelar</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-10" id="tablacitas">
+        <table class="table table-bordered table-striped bg-white">
+            <thead class="tableheader">
+                <tr>
+                    <td>Id</td>
+                    <td>Ide_Paciente</td>
+                    <td>Medico</td>
+                    <td>Hora Cita</td>
+                    <td>Fecha</td>
+                    <td>Area</td>
+                    <td>Operaciones</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for dato in datos %}
+                <tr>
+                    <td>{{ dato.0 }}</td>
+                    <td>{{ dato.1 }}</td>
+                    <td>{{ dato.2 }}</td>
+                    <td>{{ dato.3 }}</td>
+                    <td>{{ dato.4 }}</td>
+                    <td>{{ dato.5 }}</td>
+                    <td>
+                        <a href="/eCita/{{dato.1}}" class="btn btn-secondary">Editar</a>
+                        <a href="/dCita/{{dato.1}}" class="btn btn-danger btn-delete">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
