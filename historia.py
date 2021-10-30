@@ -7,4 +7,4 @@ class form_historia(FlaskForm):
     buscarp1 = SubmitField("Buscar", render_kw={"onmouseover":"buscar_pacienteh()"})
     nombre = StringField("Nombre: ")
     apellido = StringField("Apellido: ")
-    estado_salud = StringField("Estado de Salud: ")
+    estado_salud = StringField("Estado de Salud: ") 
