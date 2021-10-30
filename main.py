@@ -488,7 +488,7 @@ def cpaciente10():
             cur = con.cursor() #Manipula la conexion a la base de datos
             xsql1 = "select * from cita where id_cita = ?"
             cur.execute(xsql1,[xid_cita])   
-            row = cur.fetchone() #Trae de la Base de DAtos 1 solo registro
+            row = cur.fetchone() #Trae de la Base de DAtos 1 solo registro          
             if row is None:
                 flash ("No se Encuentra en la Base de Datos Cita "+str(row[0]))
             else:    
